@@ -11,11 +11,13 @@ function TaskShow({ task, onDelete, onUpdate}) {
     setShowEdit(!showEdit);
     console.log(showEdit);
   };
-
   const handleSubmit = (id, updatedTitle, updatedTaskDesc) => {
     setShowEdit(false);
     onUpdate(id, updatedTitle, updatedTaskDesc);
   };
+  const handleCancel = (value) => {
+    setShowEdit(value);
+  }
   return (
     <div className="task-show">
       {showEdit ? (
@@ -24,6 +26,7 @@ function TaskShow({ task, onDelete, onUpdate}) {
             taskFormUpdate={true}
             task={task}
             onUpdate={handleSubmit}
+            onCancel = {handleCancel}
           />
         </div>
       ) : (

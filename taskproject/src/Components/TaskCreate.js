@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function TaskCreate({ onCreate, task, taskFormUpdate, onUpdate }) {
+function TaskCreate({ onCreate, task, taskFormUpdate, onUpdate ,onCancel}) {
   const [title, setTitle] = useState(task ? task.title : "");
   const [taskDesc, setTaskDesc] = useState(task ? task.taskDesc : "");
 
@@ -20,6 +20,10 @@ function TaskCreate({ onCreate, task, taskFormUpdate, onUpdate }) {
     setTitle("");
     setTaskDesc("");
   };
+  const handleCancel = (event) => {
+    event.preventDefault();
+    onCancel(false)
+  }
   return (
     <div>
       {taskFormUpdate ? (
@@ -41,6 +45,9 @@ function TaskCreate({ onCreate, task, taskFormUpdate, onUpdate }) {
             />
             <button className="task-button" onClick={handleSubmit}>
               Update
+            </button>
+            <button className="task-button" onClick={handleCancel}>
+              Cancel
             </button>
           </form>
         </div>
